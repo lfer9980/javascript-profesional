@@ -21,7 +21,8 @@
 
       <button>Play/Pause</button>
     </main>
-
-    <script src="/assets/index.js" ></script>
+    <!-- EL TYPE = MODULE, no esta en todos los navegadores -->
+    <!-- con esto limitamos el scope y no se puede acceder a las variables de este script -->
+    <script type="module" src="/assets/index.js" ></script>
   </body>
 </html>

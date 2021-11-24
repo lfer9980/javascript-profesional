@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=x, initial-scale=1.0">
+	<title>Clousures</title>
+</head>
+<body>
+	<a href="./ejercicios/"></a>
+	<p><em>Abre la consola</em></p>
+
+	<script>
+
+		//esto es un IIFE
+		//"inmediatly invoked function expressions"
+		(function () {
+			let color = "green";
+
+			function printColor() {
+				console.log(color)
+			}
+
+			printColor();
+		})();
+		function makeColorPrinter(color) {
+			let colorMessage = `the color is ${color}`
+			return function () {
+				console.log(colorMessage)
+			}
+		}
+		let greenColorPrinter = makeColorPrinter("green");
+		console.log(greenColorPrinter());
+
+
+
+
+		// VARIABLES PRIVADAS
+		//const counter = 
+		//	count: 3
+		// 
+
+		function makeCounter(n) {
+			let count = n;
+			
+			return {
+				increase: function () {
+					count += 1;
+				},
+				decrease: function () {
+					count -= 1;
+				},
+				getCount: function () {
+					return count;
+				}
+			}
+		}
+
+		let counter = makeCounter(7);
+
+		console.log(counter.increase());
+		console.log(counter.getCount());
+
+	</script>
+</body>
+</html>
