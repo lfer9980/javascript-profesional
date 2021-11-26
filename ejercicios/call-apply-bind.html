@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<ul>
+		<li><button class="call-to-action">aprender</button></li>
+		<li><button class="call-to-action">aprender más</button></li>
+		<li><button class="call-to-action">Nunca parar de aprender</button></li>
+	</ul>
+
+
+	<script>
+		//el super prototipo FUNCTION ya incluye call apply y bind
+
+		/*
+			NEMOTECNIA:
+			call - comma
+			apply - arreglo
+		*/
+
+
+		//Establece "this" usando "call"
+		function saludar() {
+			console.log(`Hola. soy ${this.name} ${this.apellido}`);
+		}
+		const richard = {
+			name: "Richard",
+			apellido: "Kaufman López"
+		}
+		saludar.call(richard);
+
+
+		//Establece "this" usando "call" y pasar argumentos a la función
+		function caminar (metros, direccion) {
+			console.log(`${this.name} camina ${metros} metros hacia ${direccion}.`);
+		}
+		caminar.call(richard, 400, "norte");
+
+
+		//Establece "this" usando "apply" y pasar argumentos a la funcion
+		const values = [800, "noreste"];
+		caminar.apply(richard, values);
+
+
+		// Establecer "this" en una nueva funcion usando "bind"
+		const daniel = { name: "daniel", apellido: "sanchez"};
+		const danielSaluda = saludar.bind(daniel);
+		danielSaluda();
+
+		//tecnica Kuring para guardar algunos argumentos y llenar otros
+		const danielCamina = caminar.bind(daniel, 1000);
+		danielCamina("oeste");
+
+		//Cuando es util usar uno de estos métodos
+
+		/*buttons es un NODELIST */
+		const buttons = document.getElementsByClassName("call-to-action");
+		/*buttons.forEach(button => {
+			button.onclick = () => {
+				alert("nunca pares de aprender!")
+			}
+		});*/
+
+		//SOLUCIÓN:
+		Array.prototype.forEach.call(buttons, button => {
+				button.onclick = () => {
+					alert("nunca pares de aprender!")
+				}
+		});
+
+	</script>
+</body>
+</html>
