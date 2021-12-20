@@ -22,6 +22,7 @@ class MediaPlayer {
 	_initPlugins() {
 		//le pasaremos a los players copias del this original
 		const player = {
+			media: this.media,
 			play: () => this.play(),
 			pause: () => this.pause(),
 			toggleMute: () => this.toggleMute(),
