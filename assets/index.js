@@ -12,3 +12,13 @@ const playButton = document.getElementById('button-play');
 const muteButton = document.getElementById('button-mute')
 playButton.onclick = () => player.togglePlay();	
 muteButton.onclick = () => player.toggleMute();
+
+
+//validamos si el navegador cuenta con serviceWorker
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/sw.js')
+	//es importante manejar errores porque pueden presentarse durante el registro del archivo
+	.catch(error => {
+		console.log(error.message)
+	})
+}
