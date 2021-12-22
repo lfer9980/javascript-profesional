@@ -4,7 +4,8 @@ class AutoPause {
 		//usado para corregir error al invocar los métodos del player en el intersectionObserver
 		//con esto, el this de handleintersection apuntara a la clase autoPause
 		//se puede evitar con un arrow function
-/* 		this.handleIntersection = this.handleIntersection.bind(this) */
+		this.handleIntersection = this.handleIntersection.bind(this)
+		this.handleVisibilityChange = this.handleVisibilityChange.bind(this)
 	}
 
 	run(player) {
@@ -19,7 +20,7 @@ class AutoPause {
 		document.addEventListener("visibilitychange", this.handleVisibilityChange);
 	}
 
-	handleIntersection = entries => {
+	handleIntersection(entries) {
 		//como solo hay un elemento a observar, tomamos la primera posicion del array
 		const entry = entries[0];
 
@@ -32,7 +33,7 @@ class AutoPause {
 		}
 	} 
 
-	handleVisibilityChange = () => {
+	handleVisibilityChange() {
 		const isVisible = document.visibilityState === "visible";
 
 		if (isVisible) {
