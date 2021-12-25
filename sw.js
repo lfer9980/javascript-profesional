@@ -24,7 +24,7 @@ self.addEventListener('fetch', event => {
 
 async function precache () {
 	const cache = await caches.open(VERSION);
-	return cache.addAll([])
+	return cache.addAll([]);
 }
 
 async function cachedResponse(request) {

@@ -2,7 +2,8 @@ class MediaPlayer {
 	constructor(config) {
 		this.media = config.el;
 		this.plugins = config.plugins||[];
-		this._initPlugins();
+		this.#initPlayer();
+		this.#initPlugins();
 	}
 	play() {
 		this.media.play()
@@ -19,10 +20,19 @@ class MediaPlayer {
 		this.media.muted = !this.media.muted
 	}
 
-	_initPlugins() {
+	//iniciar el contenedor de forma dinamica
+	#initPlayer() {
+		this.container = document.createElement('div')
+		this.container.style.position = "relative"
+		this.media.parentNode.insertBefore(this.container, this.media)
+		this.container.appendChild(this.media)
+	}
+
+	#initPlugins() {
 		//le pasaremos a los players copias del this original
 		const player = {
 			media: this.media,
+			container: this.container,
 			play: () => this.play(),
 			pause: () => this.pause(),
 			toggleMute: () => this.toggleMute(),
